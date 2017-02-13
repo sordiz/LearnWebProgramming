@@ -1,0 +1,45 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+<body class='container'>
+  <div class="jumbotron">
+    <h1>Learn Web Programming Course</h1>
+    <p>AC Temperature</p>
+    <div>
+      <span style="z-index: 4; position: relative; top: 40px; left: 295px;  font-size: 400%">
+        <%= @is_on ? @temperature : '00' %>
+      </span>
+      <img src="ac.png" usemap="#acmap">
+      <map name="acmap">
+        <area target="" alt="Decrement Temperature" title="Decrement Temperature" href="/decrement_temperature" coords="94,251,22" shape="circle">
+        <area target="" alt="Increment Temperature" title="Increment Temperature" href="/increment_temperature" coords="405,252,21" shape="circle">
+        <area target="" alt="Switch On/Off" title="Switch On/Off" href="/switch_on_off" coords="249,377,29" shape="circle">
+      </map>
+   </div>
+  </div>
+  <div class="col-md-8">
+    <% @votes.each do |vote| %>
+      <%= vote[:created_at] %>
+      <h1>
+        <%= vote[:email] %>
+      </h1>
+      <%= vote[:temperature] %>
+      <hr>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <form action="/vote" method="post">
+
+      <label for="email">Email</label>
+      <input type="text" name="email" class="form-control"></br>
+
+      <label for="temperature">Vote</label>
+      <textarea name="temperature" class="form-control"></textarea></br>
+
+      <input type="submit" value="Nuevo" class="btn btn-primary">
+    </form>
+  </div>
+
+</body>

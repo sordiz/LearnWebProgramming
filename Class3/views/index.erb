@@ -1,0 +1,38 @@
+<p>
+  <%= @welcome_message %>
+</p>
+
+Current votes: <%= @current_votes %>
+
+<div>
+  <form action="/votes" method="post">
+
+    <label for="name">Name</label>
+    <input type="text" name="name" value="<%= @last_employee_name %>"></br>
+
+    <label for="category">Category</label>
+    <select name="category">
+      <option value="SM" <%= "selected=\"selected\"" if @last_employee_category == "SM"%>>
+        Solution Manager
+      </option>
+      <option value="RM" <%= "selected=\"selected\"" if @last_employee_category == "RM"%>>
+        Regional Manager
+      </option>
+      <option value="DEV" <%= "selected=\"selected\"" if @last_employee_category == "DEV"%>>
+        Developer
+      </option>
+      <option value="QA" <%= "selected=\"selected\"" if @last_employee_category == "QA"%>>
+        Qa Engineer
+      </option>
+    </select></br>
+
+    <label for="temperature">Vote (between 17-28)</label>
+    <input type="text" name="temperature" value="<%= @last_employee_temperature %>"></br>
+
+    <input type="submit" value="Vote">
+  </form>
+
+  <form action="/calculate_votes" method="post">
+    <input type="submit" value="Calculate Winner">
+  </form>
+</div>
